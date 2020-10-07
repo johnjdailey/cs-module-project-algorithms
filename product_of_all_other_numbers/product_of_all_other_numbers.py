@@ -1,11 +1,21 @@
+#product_of_all_other_numbers/product_of_all_other_numbers.py
+
+
+
+from functools import reduce
+from operator import mul
+
+
 '''
 Input: a List of integers
 Returns: a List of integers
 '''
 def product_of_all_other_numbers(arr):
-    # Your code here
-
-    pass
+    def transducer(n):
+        arr_copy = arr.copy()
+        arr_copy.remove(n)
+        return reduce(mul, arr_copy)
+    return[transducer(x) for x in arr]
 
 
 if __name__ == '__main__':
