@@ -1,11 +1,21 @@
-#!/usr/bin/python
+#making_change/making_change.py
+
+
 
 import sys
 
-def making_change(amount, denominations):
-  # Your code here
 
-  pass
+def making_change(amount, denominations):
+  if amount <=0:
+    return 1
+
+  possibilities = [0 for x in range(amount+1)]
+  possibilities[0] = 1
+  
+  for i in range(0, len(denominations)):
+      for j in range(denominations[i], amount+1):
+        possibilities[j] += possibilities[j-denominations[i]]
+  return possibilities[amount]
 
 
 if __name__ == "__main__":

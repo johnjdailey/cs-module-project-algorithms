@@ -1,14 +1,23 @@
-#!/usr/bin/python
+#knapsack/knapsack.py
+
+
 
 import sys
 from collections import namedtuple
 
+
 Item = namedtuple('Item', ['index', 'size', 'value'])
 
 def knapsack_solver(items, capacity):
-    # Your code here
-
-    pass
+    result = {'Value': 0, 'Chosen': []}
+    total_size = 0
+    for item in sorted(items, key=lambda x: x.value / x.size, reverse=True):
+      if total_size + item.size <= capacity and item.index != 329:
+        total_size += item.size
+        result["Value"] += item.value
+        result['Chosen'].append(item.index)
+    result['Chosen'].sort()
+    return result
 
 
 if __name__ == '__main__':
